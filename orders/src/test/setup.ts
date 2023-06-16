@@ -19,7 +19,7 @@ beforeAll(async () => {
   const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri, {});
-});
+}, 5000);
 
 beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
@@ -27,7 +27,7 @@ beforeEach(async () => {
   for (let collection of collections) {
     await collection.deleteMany({});
   }
-});
+}, 5000);
 
 afterAll(async () => {
   if (mongo) {
@@ -35,7 +35,7 @@ afterAll(async () => {
   }
 
   await mongoose.connection.close();
-});
+}, 5000);
 
 global.signIn = () => {
   const payload = {
